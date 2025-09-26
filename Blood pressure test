@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blood Donation Eligibility Form</title>
+    <style>
+        /* Add your CSS styling here */
+    </style>
+</head>
+<body>
+    <h1>Blood Donation Eligibility Form</h1>
+    <form id="donorForm">
+        <label for="age">Age (18-65 years):</label>
+        <input type="number" id="age" name="age" required><br>
+
+        <label for="weight">Weight (kg &ge; 45):</label>
+        <input type="number" id="weight" name="weight" required><br>
+
+        <label for="temperature">Temperature (°C):</label>
+        <input type="number" id="temperature" name="temperature" required><br>
+
+        <label for="pulse">Pulse:</label>
+        <input type="number" id="pulse" name="pulse" required><br>
+
+        <label for="delivery">Delivery (last 1 year):</label>
+        <input type="radio" id="deliveryYes" name="delivery" value="yes"> Yes
+        <input type="radio" id="deliveryNo" name="delivery" value="no"> No<br>
+
+        <label for="bloodPressure">Blood Pressure (systolic/diastolic):</label>
+        <input type="text" id="bloodPressure" name="bloodPressure" required><br>
+
+        <label for="hemoglobin">Hemoglobin (g/dL &ge; 12.5):</label>
+        <input type="number" id="hemoglobin" name="hemoglobin" required><br>
+
+        <!-- Add more eligibility criteria fields here -->
+
+        <button type="button" onclick="checkEligibility()">Check Eligibility</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function checkEligibility() {
+            // Retrieve form values
+            const age = parseInt(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const temperature = parseFloat(document.getElementById('temperature').value);
+            const pulse = parseInt(document.getElementById('pulse').value);
+            const delivery = document.querySelector('input[name="delivery"]:checked').value;
+            const bloodPressure = document.getElementById('bloodPressure').value;
+            const hemoglobin = parseFloat(document.getElementById('hemoglobin').value);
+
+            // Perform eligibility checks
+            let eligibilityMessage = "Eligible for donation";
+
+            if (age < 18 || age > 65) {
+                eligibilityMessage = "Age is not within the eligible range (18-65 years).";
+            } else if (weight < 45) {
+                eligibilityMessage = "Weight is less than 45 kilograms.";
+            } else if (/* Add more checks for other criteria */) {
+                // Add more eligibility checks here
+            }
+
+            // Display result
+            document.getElementById('result').textContent = eligibilityMessage;
+        }
+    </script>
+</body>
+</html>
